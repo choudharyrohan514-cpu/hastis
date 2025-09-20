@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Wife Day, hasti!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Font Classes */
+        .font-great-vibes { font-family: 'Great Vibes', cursive; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+
+        /* Background Gradient */
+        body {
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            min-height: 100vh;
+        }
+
+        /* Initial Surprise Section Styling */
+        #surprise-section {
+            transition: opacity 1s ease-out, transform 0.5s ease-in-out;
+        }
+        
+        /* Heart Pulse Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .pulse-heart {
+            animation: pulse 2s infinite;
+        }
+
+        /* Content Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        /* Game Card Styling */
+        .card {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .card-front {
+            background-color: white;
+            color: #d63384;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 8px;
+        }
+        .card-back {
+            background: linear-gradient(135deg, #f78ca0, #f9748f);
+            transform: rotateY(180deg);
+        }
+        .card.matched {
+            opacity: 0.5;
+            cursor: default;
+        }
+        
+        /* Emoji Animation */
+        #animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .emoji-animation {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatUp 4s ease-out forwards;
+            opacity: 1;
+        }
+        @keyframes floatUp {
+            from { transform: translateY(0) scale(1); opacity: 1; }
+            to { transform: translateY(-80vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="font-poppins bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <!-- This container is for floating emoji animations -->
+    <div id="animation-container"></div>
+
+    <div id="main-container" class="w-full max-w-2xl mx-auto">
+        
+        <!-- Initial Surprise Screen -->
+        <div id="surprise-section" class="text-center text-white bg-black bg-opacity-20 backdrop-blur-lg p-8 rounded-2xl shadow-2xl">
+            <h1 class="font-great-vibes text-5xl md:text-7xl mb-4">Ek Surprise Hai...</h1>
+            <p class="text-2xl md:text-3xl font-light mb-8">Specially For You, <span class="font-semibold text-pink-300">hasti</span></p>
+            <div id="surprise-heart" class="cursor-pointer inline-block pulse-heart" title="Click me!">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-red-500 transition-transform duration-300 hover:scale-110" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <p class="mt-4 text-gray-200">Is dil pe click karo...</p>
+        </div>
+
+        <!-- Main Content (Hidden Initially) -->
+        <div id="content-section" class="hidden text-center bg-white bg-opacity-80 backdrop-blur-md p-6 md:p-10 rounded-2xl shadow-xl">
+            
+            <!-- Personal Message -->
+            <div id="message-container" class="text-gray-700 text-lg md:text-xl space-y-4 mb-10">
+                <h1 class="font-great-vibes text-pink-600 text-5xl md:text-6xl mb-6 reveal">For My Dearest hasti,</h1>
+                <p class="reveal">hasti, jab se tum aayi ho main kaafi badal gaya hu. Jo bhi ho rha hai, achha ho rha hai. Tum mere liye lucky ho aur ek perfect wife ho.</p>
+                <p class="reveal">Mene tumhe 6 tarikh ko propose kiya tha, tab se hi tumhe apni wife maanne laga. Fir hum paper mein mile, vo alag hi khushi thi.</p>
+                <p class="reveal">Yaad hai humne first time faluda khaya tha? Aur vo Vaishno Dham ki bike trip? Sab kitna khaas hai.</p>
+                <p class="reveal font-bold text-pink-500 text-2xl mt-4">Happy Wife Day, Meri Jaan!</p>
+            </div>
+
+            <!-- Memory Game -->
+            <div id="game-container" class="mt-8 pt-8 border-t-2 border-pink-200 reveal">
+                <h2 class="font-great-vibes text-4xl text-gray-800 mb-2">hasti's Memory Game</h2>
+                <p class="mb-6 text-gray-600">Chalo dekhein humari yaadein kitni strong hain! Same cards ko match karo.</p>
+                <div id="game-board" class="grid grid-cols-4 gap-3 md:gap-4 max-w-md mx-auto mb-4"></div>
+                <p id="game-status" class="text-green-600 font-semibold h-6 mb-4"></p>
+                <button id="reset-button" class="bg-pink-500 text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300">Restart Game</button>
+            </div>
+            
+            <!-- Quiz Section (Level 2) -->
+            <div id="quiz-section" class="hidden mt-8 pt-8 border-t-2 border-pink-200 transition-opacity duration-500">
+                <h2 class="font-great-vibes text-4xl text-gray-800 mb-6">Level 2: Just For Fun!</h2>
+                <div id="question1-container" class="mb-8">
+                    <p class="text-2xl text-gray-700 mb-4">🥰 Kya tum meri life partner bnogi?</p>
+                    <div class="flex justify-center gap-4">
+                        <button data-answer="yes" class="quiz-option bg-green-500 text-white font-semibold py-2 px-8 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300">Yes</button>
+                        <button data-answer="no" class="quiz-option bg-red-500 text-white font-semibold py-2 px-8 rounded-full shadow-lg hover:bg-red-600 transition-all duration-300">No</button>
+                    </div>
+                </div>
+                <div id="question2-container" class="hidden mb-8 transition-opacity duration-500">
+                     <p class="text-2xl text-gray-700 mb-4">Tumhe kitne bache chahiye? 😜😂</p>
+                    <div class="flex justify-center gap-4">
+                        <button class="quiz-option bg-blue-500 text-white font-semibold py-2 px-8 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300">10</button>
+                        <button class="quiz-option bg-purple-500 text-white font-semibold py-2 px-8 rounded-full shadow-lg hover:bg-purple-600 transition-all duration-300">20</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Final Message -->
+            <div id="final-message-container" class="hidden text-center mt-10">
+                <h2 class="font-great-vibes text-pink-600 text-5xl md:text-6xl animate-pulse">I Love You, hasti Meri Jaan!</h2>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const surpriseSection = document.getElementById('surprise-section');
+            const contentSection = document.getElementById('content-section');
+            const surpriseHeart = document.getElementById('surprise-heart');
+            const messageContainer = document.getElementById('message-container');
+
+            // --- Surprise Reveal Logic ---
+            surpriseHeart.addEventListener('click', () => {
+                surpriseSection.style.opacity = '0';
+                surpriseSection.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    surpriseSection.classList.add('hidden');
+                    contentSection.classList.remove('hidden');
+                    const revealElements = contentSection.querySelectorAll('.reveal');
+                    revealElements.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }, index * 400); 
+                    });
+                }, 500);
+            });
+
+            // --- Memory Game Logic ---
+            const gameContainer = document.getElementById('game-container');
+            const gameBoard = document.getElementById('game-board');
+            const resetButton = document.getElementById('reset-button');
+            const gameStatus = document.getElementById('game-status');
+            const memories = ['6 Tarikh', 'Exam Day', 'First Faluda', 'Bike Trip', 'Proposal', 'Vaishno Dham'];
+            let gameCards = [...memories, ...memories];
+            let flippedCards = [], matchedPairs = 0, lockBoard = false;
+
+            function shuffle(array) { array.sort(() => Math.random() - 0.5); }
+
+            function createBoard() {
+                gameBoard.innerHTML = '';
+                gameStatus.textContent = '';
+                matchedPairs = 0;
+                shuffle(gameCards);
+                gameCards.forEach(memory => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.dataset.memory = memory;
+                    card.innerHTML = `
+                        <div class="card-face card-front">${memory}</div>
+                        <div class="card-face card-back">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                            </svg>
+                        </div>`;
+                    card.addEventListener('click', flipCard);
+                    gameBoard.appendChild(card);
+                });
+            }
+
+            function flipCard() {
+                if (lockBoard || this === flippedCards[0] || this.classList.contains('flipped')) return;
+                this.classList.add('flipped');
+                flippedCards.length === 0 ? flippedCards.push(this) : (flippedCards.push(this), lockBoard = true, checkForMatch());
+            }
+
+            function checkForMatch() {
+                const isMatch = flippedCards[0].dataset.memory === flippedCards[1].dataset.memory;
+                isMatch ? disableCards() : unflipCards();
+            }
+            
+            function disableCards() {
+                flippedCards.forEach(card => {
+                    card.removeEventListener('click', flipCard);
+                    card.classList.add('matched');
+                });
+                matchedPairs++;
+                resetBoard();
+                if (matchedPairs === memories.length) {
+                    setTimeout(() => {
+                        gameStatus.textContent = 'Level 1 Complete! Ab Level 2...';
+                        setTimeout(() => {
+                            gameContainer.style.transition = 'opacity 0.5s';
+                            gameContainer.style.opacity = '0';
+                            messageContainer.style.transition = 'opacity 0.5s';
+                            messageContainer.style.opacity = '0';
+                            setTimeout(() => {
+                                gameContainer.classList.add('hidden');
+                                messageContainer.classList.add('hidden');
+                                quizSection.classList.remove('hidden');
+                                quizSection.style.opacity = '0';
+                                setTimeout(() => { quizSection.style.opacity = '1'; }, 100);
+                            }, 500);
+                        }, 1500);
+                    }, 500);
+                }
+            }
+
+            function unflipCards() {
+                setTimeout(() => {
+                    flippedCards.forEach(card => card.classList.remove('flipped'));
+                    resetBoard();
+                }, 1200);
+            }
+
+            function resetBoard() { [flippedCards, lockBoard] = [[], false]; }
+
+            resetButton.addEventListener('click', createBoard);
+            createBoard();
+
+            // --- Quiz Logic ---
+            const quizSection = document.getElementById('quiz-section');
+            const question1Container = document.getElementById('question1-container');
+            const question2Container = document.getElementById('question2-container');
+            const finalMessageContainer = document.getElementById('final-message-container');
+            const animationContainer = document.getElementById('animation-container');
+            let q1Answered = false, q2Answered = false;
+
+            function checkShowFinalMessage() {
+                if (q1Answered && q2Answered) {
+                    setTimeout(() => { finalMessageContainer.classList.remove('hidden'); }, 1000);
+                }
+            }
+
+            function createEmojiAnimation(emoji, count) {
+                for (let i = 0; i < count; i++) {
+                    const el = document.createElement('div');
+                    el.classList.add('emoji-animation');
+                    el.innerHTML = emoji;
+                    el.style.left = `${Math.random() * 100}%`;
+                    el.style.animationDelay = `${Math.random() * 2}s`;
+                    el.style.fontSize = `${1.5 + Math.random() * 1.5}rem`;
+                    animationContainer.appendChild(el);
+                    setTimeout(() => { el.remove(); }, 4000);
+                }
+            }
+
+            question1Container.querySelectorAll('.quiz-option').forEach(button => {
+                button.addEventListener('click', () => {
+                    if (q1Answered) return;
+                    q1Answered = true;
+                    if (button.dataset.answer === 'yes') {
+                        createEmojiAnimation('❤️', 10);
+                        createEmojiAnimation('🥰', 10);
+                    } else {
+                        createEmojiAnimation('😢', 10);
+                    }
+                    question1Container.querySelectorAll('.quiz-option').forEach(btn => btn.disabled = true);
+                    setTimeout(() => {
+                        question2Container.classList.remove('hidden');
+                        question2Container.style.opacity = '0';
+                        setTimeout(() => { question2Container.style.opacity = '1'; }, 100);
+                    }, 1000);
+                    checkShowFinalMessage();
+                });
+            });
+
+            question2Container.querySelectorAll('.quiz-option').forEach(button => {
+                button.addEventListener('click', () => {
+                    if (q2Answered) return;
+                    q2Answered = true;
+                    createEmojiAnimation('😂', 15);
+                    createEmojiAnimation('😜', 10);
+                    question2Container.querySelectorAll('.quiz-option').forEach(btn => btn.disabled = true);
+                    checkShowFinalMessage();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
